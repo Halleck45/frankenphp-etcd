@@ -9,8 +9,8 @@ package myextension
 //#include <php_variables.h>
 //#include <zend_llist.h>
 //#include <zend_string.h>
-//#include "build/myextension.h"
-//#include "build/myextension_arginfo.h"
+//#include "myextension.h"
+//#include "myextension_arginfo.h"
 import "C"
 
 import (
@@ -23,4 +23,12 @@ import (
 func background_hello(foo *C.zend_string) {
 	cstr := zendStringToGoString(foo)
 	fmt.Println("Hello", cstr)
+}
+
+func zendStringToGoString(zendStr *C.zend_string) string {
+	if zendStr == nil {
+		return ""
+	}
+
+	return C.GoStringN((*C.char)(unsafe.Pointer(&zendStr.val)), C.int(zendStr.len))
 }
