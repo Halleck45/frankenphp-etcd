@@ -9,16 +9,18 @@ package myextension
 //#include <php_variables.h>
 //#include <zend_llist.h>
 //#include <zend_string.h>
-//#include "main.h"
-//#include "main_arginfo.h"
+//#include "build/myextension.h"
+//#include "build/myextension_arginfo.h"
 import "C"
 
 import (
 	"fmt"
+	"github.com/dunglas/frankenphp"
+	"unsafe"
 )
 
 // export_php:function background_hello(string $name): void
-func BackgroundHello(foo *C.zend_string) {
-	cstr := C.zend_string(foo)
-	fmt.Println("Hello", C.zend_string(cstr))
+func background_hello(foo *C.zend_string) {
+	cstr := zendStringToGoString(foo)
+	fmt.Println("Hello", cstr)
 }
