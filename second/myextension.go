@@ -9,6 +9,7 @@ package myextension
 //#include <php_variables.h>
 //#include <zend_llist.h>
 //#include <zend_string.h>
+//#include "php-ext.h"
 //#include "myextension.h"
 //#include "myextension_arginfo.h"
 import "C"
