@@ -15,7 +15,7 @@ func init() {
 
 //export background_hello
 func BackgroundHello(foo *C.zend_string) {
-	cstr := C.get_zend_string_val(foo)
-	fmt.Println("Hello", C.GoString(cstr))
+	cstr := C.zend_string(foo)
+	fmt.Println("Hello", C.zend_string(cstr))
 }
 
